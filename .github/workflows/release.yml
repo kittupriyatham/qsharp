@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bin_name: qsharp.exe
+            asset_name: qsharp-windows-x64.zip
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            bin_name: qsharp
+            asset_name: qsharp-linux-x64.tar.gz
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            bin_name: qsharp
+            asset_name: qsharp-macos-x64.tar.gz
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            bin_name: qsharp
+            asset_name: qsharp-macos-arm64.tar.gz
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Build binary
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Package asset (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          Compress-Archive -Path target/${{ matrix.target }}/release/${{ matrix.bin_name }} -DestinationPath ${{ matrix.asset_name }}
+
+      - name: Package asset (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          tar -czf ${{ matrix.asset_name }} -C target/${{ matrix.target }}/release ${{ matrix.bin_name }}
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.asset_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

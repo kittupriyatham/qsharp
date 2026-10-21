@@ -1,0 +1,9 @@
+[package]
+name = "qsharp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+qsc = { git = "https://github.com/microsoft/qdk.git" }
+qsc_eval = { git = "https://github.com/microsoft/qdk.git" }
+qsc_data_structures = { git = "https://github.com/microsoft/qdk.git" }
