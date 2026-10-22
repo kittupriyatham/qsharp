@@ -14,7 +14,7 @@ dependencies = [
 [[package]]
 name = "allocator"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "mimalloc-sys",
 ]
@@ -285,6 +285,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "displaydoc"
+version = "0.2.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
+]
+
+[[package]]
 name = "either"
 version = "1.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -332,6 +343,12 @@ dependencies = [
  "jiff",
  "log",
 ]
+
+[[package]]
+name = "fasteval"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4f4cdac9e4065d7c48e30770f8665b8cef9a3a73a63a4056a33a5f395bc7cf75"
 
 [[package]]
 name = "find-msvc-tools"
@@ -470,6 +487,93 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
+name = "icu_collections"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fa68d21081c4a05d5a901a1c62add574c77048b6a1c67be3b50ce0b60d4ca513"
+dependencies = [
+ "displaydoc",
+ "potential_utf",
+ "utf8_iter",
+ "yoke",
+ "zerofrom",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_locale_core"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d56e28588da92eee5c3201a6eff33fabdd49b62269c8938d4ff050ce4d900deb"
+dependencies = [
+ "displaydoc",
+ "litemap",
+ "serde",
+ "tinystr",
+ "writeable",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_locale_fallback"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "251af8e57c9400e3eb58242fe5b8b1152b2a64fdf4cf632f923c38ccee6f2fa9"
+dependencies = [
+ "icu_locale_core",
+ "icu_locale_fallback_data",
+ "icu_provider",
+ "potential_utf",
+ "tinystr",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_locale_fallback_data"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "decf2a22ec8fa68f1a0c1129a3f8583f8f8bc24e8b9ccbe98ead99f62a4dc3a8"
+
+[[package]]
+name = "icu_provider"
+version = "2.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d27bbb9d3abbefac45d55f647c9de1d44aafcd1186eb91879afef17c396c3e73"
+dependencies = [
+ "displaydoc",
+ "icu_locale_core",
+ "serde",
+ "stable_deref_trait",
+ "writeable",
+ "yoke",
+ "zerofrom",
+ "zerotrie",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_segmenter"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "82d07aafccd67af15d02512a6adf5896fbc5ed00f2e99b471d2efa14016db3db"
+dependencies = [
+ "icu_collections",
+ "icu_locale_fallback",
+ "icu_provider",
+ "icu_segmenter_data",
+ "potential_utf",
+ "smallvec",
+ "utf8_iter",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_segmenter_data"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae293c039020f9ec10710af98d29ce6aa2051486638b49c9a6409f3b4a9e98ad"
+
+[[package]]
 name = "indenter"
 version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -478,7 +582,7 @@ checksum = "964de6e86d545b246d84badc0fef527924ace5134f30641c203ef52ba83f58d5"
 [[package]]
 name = "index_map"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 
 [[package]]
 name = "is_terminal_polyfill"
@@ -545,9 +649,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a"
 
 [[package]]
+name = "libm"
+version = "0.2.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981"
+
+[[package]]
 name = "library"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
+
+[[package]]
+name = "litemap"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae"
 
 [[package]]
 name = "log"
@@ -579,7 +695,9 @@ checksum = "5f98efec8807c63c752b5bd61f862c165c115b0a35685bdcfd9238c7aeb592b7"
 dependencies = [
  "cfg-if",
  "miette-derive",
- "unicode-width",
+ "owo-colors",
+ "textwrap",
+ "unicode-width 0.1.14",
 ]
 
 [[package]]
@@ -596,7 +714,7 @@ dependencies = [
 [[package]]
 name = "mimalloc-sys"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "cc",
 ]
@@ -650,7 +768,7 @@ dependencies = [
 [[package]]
 name = "noisy_simulator"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "nalgebra",
  "num-complex",
@@ -730,6 +848,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "384b8ab6d37215f3c5301a95a4accb5d64aa607f1fcb26a11b5303878451b4fe"
 
 [[package]]
+name = "owo-colors"
+version = "4.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "13c45bb4a6ae1280ec0803b1ef9d3455eb50f01efbbe1447ab020f1d54fba9d8"
+
+[[package]]
 name = "paulimer"
 version = "0.2.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -781,6 +905,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "potential_utf"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d83eb9bc6d8e5cf568e7a1101d60ee05e81ed50ea106026f3d18deeb046d7661"
+dependencies = [
+ "serde_core",
+ "writeable",
+ "zerovec",
+]
+
+[[package]]
+name = "probability"
+version = "0.20.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "42746b805e424b759d46c22c65dc66ccca057a2db96e9db4fda6c337a287e485"
+dependencies = [
+ "random",
+ "special",
+]
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.107"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -792,7 +937,7 @@ dependencies = [
 [[package]]
 name = "qdk_openqasm"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "bitflags 2.13.2",
  "enum-iterator",
@@ -807,7 +952,7 @@ dependencies = [
 [[package]]
 name = "qdk_simulators"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "binar",
  "bytemuck",
@@ -829,7 +974,7 @@ dependencies = [
 [[package]]
 name = "qsc"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "allocator",
  "env_logger",
@@ -865,7 +1010,7 @@ dependencies = [
 [[package]]
 name = "qsc_ast"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "miette",
@@ -876,7 +1021,7 @@ dependencies = [
 [[package]]
 name = "qsc_circuit"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "log",
@@ -902,7 +1047,7 @@ dependencies = [
 [[package]]
 name = "qsc_codegen"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "num-bigint",
  "num-complex",
@@ -923,7 +1068,7 @@ dependencies = [
 [[package]]
 name = "qsc_data_structures"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "bitflags 2.13.2",
  "indenter",
@@ -937,7 +1082,7 @@ dependencies = [
 [[package]]
 name = "qsc_doc_gen"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "qsc_ast",
  "qsc_data_structures",
@@ -950,7 +1095,7 @@ dependencies = [
 [[package]]
 name = "qsc_eval"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "miette",
  "ndarray",
@@ -970,7 +1115,7 @@ dependencies = [
 [[package]]
 name = "qsc_fir"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "num-bigint",
@@ -981,7 +1126,7 @@ dependencies = [
 [[package]]
 name = "qsc_fir_transforms"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "miette",
  "num-bigint",
@@ -996,7 +1141,7 @@ dependencies = [
 [[package]]
 name = "qsc_formatter"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "clap",
  "qsc_data_structures",
@@ -1006,7 +1151,7 @@ dependencies = [
 [[package]]
 name = "qsc_frontend"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "library",
  "miette",
@@ -1021,7 +1166,7 @@ dependencies = [
 [[package]]
 name = "qsc_hir"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "num-bigint",
@@ -1032,7 +1177,7 @@ dependencies = [
 [[package]]
 name = "qsc_linter"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "miette",
  "qsc_ast",
@@ -1048,7 +1193,7 @@ dependencies = [
 [[package]]
 name = "qsc_lowerer"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "qsc_data_structures",
  "qsc_fir",
@@ -1058,7 +1203,7 @@ dependencies = [
 [[package]]
 name = "qsc_openqasm_compiler"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "miette",
@@ -1075,7 +1220,7 @@ dependencies = [
 [[package]]
 name = "qsc_parse"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "bitflags 2.13.2",
  "enum-iterator",
@@ -1090,7 +1235,7 @@ dependencies = [
 [[package]]
 name = "qsc_partial_eval"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "miette",
  "num-bigint",
@@ -1108,7 +1253,7 @@ dependencies = [
 [[package]]
 name = "qsc_passes"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "miette",
  "num-bigint",
@@ -1126,7 +1271,7 @@ dependencies = [
 [[package]]
 name = "qsc_project"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "async-trait",
  "futures",
@@ -1147,7 +1292,7 @@ dependencies = [
 [[package]]
 name = "qsc_rca"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "bitflags 2.13.2",
  "indenter",
@@ -1163,7 +1308,7 @@ dependencies = [
 [[package]]
 name = "qsc_rir"
 version = "0.0.0"
-source = "git+https://github.com/microsoft/qdk.git#1b8de0d17701765fd43dde88155ba22bb82b052d"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
 dependencies = [
  "indenter",
  "qsc_data_structures",
@@ -1172,11 +1317,17 @@ dependencies = [
 
 [[package]]
 name = "qsharp"
-version = "0.1.0"
+version = "0.1.3"
 dependencies = [
+ "clap",
  "qsc",
+ "qsc_circuit",
  "qsc_data_structures",
  "qsc_eval",
+ "qsc_project",
+ "resource_estimator",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -1210,6 +1361,12 @@ name = "rand_core"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
+
+[[package]]
+name = "random"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "474c42c904f04dfe2a595a02f71e1a0e5e92ffb5761cc9a4c02140b93b8dd504"
 
 [[package]]
 name = "rawpointer"
@@ -1251,6 +1408,25 @@ name = "regex-syntax"
 version = "0.8.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
+
+[[package]]
+name = "resource_estimator"
+version = "0.0.0"
+source = "git+https://github.com/microsoft/qdk.git#00eff42a1a2d6391f91e6fc7ad3fee7ad1a57594"
+dependencies = [
+ "fasteval",
+ "miette",
+ "num-bigint",
+ "num-complex",
+ "probability",
+ "qsc",
+ "rand",
+ "regex-lite",
+ "rustc-hash",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
 
 [[package]]
 name = "rustc-hash"
@@ -1368,6 +1544,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "238653bedf881fede50103cb7838b029e2b73d3d3d8e70d36f0a96be32a65c7b"
 
 [[package]]
+name = "special"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b89cf0d71ae639fdd8097350bfac415a41aabf1d5ddd356295fdc95f09760382"
+dependencies = [
+ "libm",
+]
+
+[[package]]
+name = "stable_deref_trait"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596"
+
+[[package]]
 name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1396,6 +1587,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "synstructure"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "901704edd0dfe137f1987838ee4f259e4e063c31371bdb423f7ae38ec6f77f02"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
+]
+
+[[package]]
+name = "textwrap"
+version = "0.16.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ecfad6c3abc80a577f2b91c1e412ee57e7a060d430b553c1b0c940974ebcd49"
+dependencies = [
+ "icu_segmenter",
+ "unicode-width 0.2.2",
+]
+
+[[package]]
 name = "thiserror"
 version = "2.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1413,6 +1625,17 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 3.0.9",
+]
+
+[[package]]
+name = "tinystr"
+version = "0.8.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b1e27c91459209c2986af3dcf603a5a74a4368754ce37414f59acc971167f643"
+dependencies = [
+ "displaydoc",
+ "serde_core",
+ "zerovec",
 ]
 
 [[package]]
@@ -1440,10 +1663,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
 
 [[package]]
+name = "unicode-width"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b4ac048d71ede7ee76d585517add45da530660ef4390e49b098733c6e897f254"
+
+[[package]]
 name = "unicode-xid"
 version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853"
+
+[[package]]
+name = "utf8_iter"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
 
 [[package]]
 name = "utf8parse"
@@ -1474,6 +1709,89 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc"
 dependencies = [
  "windows-link",
+]
+
+[[package]]
+name = "writeable"
+version = "0.6.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc"
+
+[[package]]
+name = "yoke"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "709fe23a0424b6a435d82152b1bd3fdfb0833487d5fa90d05d42762a9891fef5"
+dependencies = [
+ "stable_deref_trait",
+ "yoke-derive",
+ "zerofrom",
+]
+
+[[package]]
+name = "yoke-derive"
+version = "0.8.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec8ebde2db3681e8c9980cc27822030e68752690ddfa9473e739aeb4dbde6d71"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
+ "synstructure",
+]
+
+[[package]]
+name = "zerofrom"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ec05a11813ea801ff6d75110ad09cd0824ddba17dfe17128ea0d5f68e6c5272"
+dependencies = [
+ "zerofrom-derive",
+]
+
+[[package]]
+name = "zerofrom-derive"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f75b4683f6c7f45248d4d64056a24298c6281e0993356d7d1b4a1a962ef10d4a"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
+ "synstructure",
+]
+
+[[package]]
+name = "zerotrie"
+version = "0.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4ea269c3bd32f0a32c321907a2ae912ba6f4649bb0fc764a15627e99a7095a3f"
+dependencies = [
+ "displaydoc",
+ "zerovec",
+]
+
+[[package]]
+name = "zerovec"
+version = "0.11.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb0464e17806c1d976d5cba29399c7f08e516e279e2ba493f63123b5fca67dd8"
+dependencies = [
+ "serde",
+ "yoke",
+ "zerofrom",
+ "zerovec-derive",
+]
+
+[[package]]
+name = "zerovec-derive"
+version = "0.11.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34df6fc39dbd26ddc9c10e6a2984476e13acce22e64e4487636ef494369225da"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
 ]
 
 [[package]]

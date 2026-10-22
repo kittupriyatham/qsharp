@@ -24,22 +24,48 @@ cargo run -- test.qs
 
 ---
 
-## How to Contribute
+## Commit Message Convention
 
-1. **Check the Roadmap:** Read [TASKS.md](TASKS.md) to see planned features and open issues.
-2. **Fork and Branch:** Create a feature branch off `main`:
-   ```bash
-   git checkout -b feature/my-new-feature
-   ```
-3. **Commit Convention:** Write clear, concise commit messages.
-4. **Submit a Pull Request (PR):** Describe your changes and reference any related issues.
+This project adheres to the [Conventional Commits](https://www.conventionalcommits.org/) specification (`<type>(<scope>): <subject>`):
+
+### Types
+- `feat`: A new feature or capability (e.g., `feat(circuit): add ASCII quantum circuit diagrams`)
+- `fix`: A bug fix (e.g., `fix(parser): resolve multi-file implicit namespaces`)
+- `docs`: Documentation updates (e.g., `docs(readme): add MSI installation instructions`)
+- `style`: Changes that do not affect code logic (formatting, whitespace)
+- `refactor`: Code changes that neither fix a bug nor add a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `ci`: Changes to CI/CD workflows and scripts (e.g., `.github/workflows/`)
+- `chore`: Maintenance tasks, dependency bumps, or tool configurations
+
+### Formatting Rules
+- Use the imperative present tense: "add" not "added", "fix" not "fixed".
+- Keep the first line under 72 characters.
+- Reference issue or PR numbers in the body or footer (e.g. `Fixes #12`).
 
 ---
 
-## Code Style & Guidelines
-- Run `cargo fmt` before submitting.
-- Run `cargo clippy` and ensure no new warnings are introduced.
-- Strive for zero external runtime dependencies.
+## Pull Request Guidelines
+
+1. **Check the Roadmap:** Read [TASKS.md](TASKS.md) to see planned features and open issues.
+2. **Create a Branch:**
+   ```bash
+   git checkout -b feat/my-new-feature
+   # or
+   git checkout -b fix/issue-description
+   ```
+3. **Verify Locally:**
+   - Format: `cargo fmt --check`
+   - Lint: `cargo clippy --all-targets`
+   - Test: `cargo test`
+4. **Use PR Template:** When opening a PR, fill out the checklist and description in the pull request template.
+
+---
+
+## Code Style & Standards
+- Keep zero runtime external dependencies (.NET, Python, etc.).
+- Ensure all native builds pass clean across Windows, Ubuntu, and macOS.
 
 ---
 

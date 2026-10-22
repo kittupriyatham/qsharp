@@ -1,0 +1,42 @@
+#!/bin/sh
+# Conventional Commits regex pattern:
+# <type>(<optional-scope>): <description>
+# Examples:
+#   feat: add resource estimation
+#   feat(circuit): support ascii rendering
+#   fix(run): fix multi-file main entry
+#   ci: add pr formatting check
+
+commit_msg_file="$1"
+first_line=$(head -n 1 "$commit_msg_file")
+
+# Allow merge commits or fixup commits
+case "$first_line" in
+    Merge*|"fixup!"*|"squash!"*)
+        exit 0
+        ;;
+esac
+
+commit_regex='^(feat|fix|docs|style|refactor|perf|test|ci|chore)(\([a-zA-Z0-9_-]+\))?: .{1,72}$'
+
+if ! echo "$first_line" | grep -qE "$commit_regex"; then
+    echo "================================================================================"
+    echo " [COMMIT REJECTED] Invalid commit message format!"
+    echo "--------------------------------------------------------------------------------"
+    echo " Your commit message:"
+    echo "   \"$first_line\""
+    echo ""
+    echo " Commit messages must strictly follow the Conventional Commits specification:"
+    echo "   <type>(<optional-scope>): <description in lowercase>"
+    echo ""
+    echo " Allowed types: feat, fix, docs, style, refactor, perf, test, ci, chore"
+    echo ""
+    echo " Valid Examples:"
+    echo "   feat: add resource estimation command"
+    echo "   feat(circuit): add ascii diagram generation"
+    echo "   fix(cli): correct shot summary calculation"
+    echo "   docs(readme): update installation guide"
+    echo "   ci: add pull request linter"
+    echo "================================================================================"
+    exit 1
+fi

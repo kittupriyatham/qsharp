@@ -1,12 +1,18 @@
 [package]
 name = "qsharp"
-version = "0.1.0"
+version = "0.1.3"
 edition = "2021"
 description = "Standalone Modern Q# CLI"
 license = "MIT"
 authors = ["POTLURI KRISHNA PRIYATHAM"]
 
 [dependencies]
+clap = { version = "4.6", features = ["derive"] }
 qsc = { git = "https://github.com/microsoft/qdk.git" }
+qsc_circuit = { git = "https://github.com/microsoft/qdk.git" }
+qsc_project = { git = "https://github.com/microsoft/qdk.git" }
 qsc_eval = { git = "https://github.com/microsoft/qdk.git" }
 qsc_data_structures = { git = "https://github.com/microsoft/qdk.git" }
+resource_estimator = { git = "https://github.com/microsoft/qdk.git" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
