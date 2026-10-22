@@ -19,7 +19,7 @@ jobs:
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             bin_name: qsharp.exe
-            asset_name: qsharp-windows-x64.zip
+            asset_name: qsharp-windows-x64.msi   # Output as MSI installer
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             bin_name: qsharp
@@ -45,10 +45,11 @@ jobs:
       - name: Build binary
         run: cargo build --release --target ${{ matrix.target }}
 
-      - name: Package asset (Windows)
+      - name: Package installer (Windows)
         if: runner.os == 'Windows'
         run: |
-          Compress-Archive -Path target/${{ matrix.target }}/release/${{ matrix.bin_name }} -DestinationPath ${{ matrix.asset_name }}
+          cargo install cargo-wix
+          cargo wix --no-build --target ${{ matrix.target }} -o ${{ matrix.asset_name }}
 
       - name: Package asset (Unix)
         if: runner.os != 'Windows'
