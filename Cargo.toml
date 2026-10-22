@@ -2,6 +2,9 @@
 name = "qsharp"
 version = "0.1.0"
 edition = "2021"
+description = "Standalone Modern Q# CLI"
+license = "MIT"
+authors = ["POTLURI KRISHNA PRIYATHAM"]
 
 [dependencies]
 qsc = { git = "https://github.com/microsoft/qdk.git" }
