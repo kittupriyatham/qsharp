@@ -2,6 +2,20 @@
 
 A fast, lightweight, standalone command-line compiler and runner for the [Q# Quantum Programming Language](https://github.com/microsoft/qdk), built with Rust.
 
+## Why `qsharp`? (Motivation & Goal)
+
+In 2023–2024, Microsoft completely re-architected the Quantum Development Kit (QDK) in Rust, replacing the legacy C# / .NET SDK with a high-performance compiler and simulator.
+
+However, **Microsoft did not ship an official standalone command-line binary** (like `rustc`, `python`, `cargo`, or `gh`). The modern toolchain is distributed strictly through:
+- A VS Code editor extension (GUI button clicks)
+- Python wrapper bindings (`pip install qsharp`)
+- WebAssembly browser playgrounds
+
+**The Goal:**
+`qsharp` was created to fill this missing gap. It provides quantum developers and researchers with a first-class, zero-dependency, native command-line tool that directly harnesses Microsoft's open-source Rust QDK engine (`qsc`).
+
+With `qsharp`, you can compile and execute `.qs` files, render terminal ASCII circuits, and perform physical resource estimation in milliseconds—straight from your terminal or CI/CD pipelines—without needing VS Code, Python, or the .NET SDK installed.
+
 ## Features
 - **Zero Dependencies**: Pure native binary with no need for .NET SDK, C# runtime, Python, or VS Code.
 - **Modern QDK Engine**: Directly links against Microsoft's official Rust-based `qsc` and `resource_estimator` engines.
